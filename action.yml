@@ -1,6 +1,6 @@
-name: 'TODO: Run <linter-name> with reviewdog'
-description: 'TODO: 🐶 Run <linter-name> with reviewdog on pull requests to improve code review experience.'
-author: 'TODO: <your-name>'
+name: 'Run LanguageTool with reviewdog'
+description: '🐶 Run LanguageTool with reviewdog on pull requests to improve code review experience.'
+author: 'haya14busa'
 inputs:
   github_token:
     description: 'GITHUB_TOKEN'
@@ -12,10 +12,8 @@ inputs:
   reporter:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
-    default: ''
+  ### Flags for LanguageTool ###
+  # TODO
 runs:
   using: 'docker'
   image: 'Dockerfile'
