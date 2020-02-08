@@ -4,6 +4,7 @@ set -e
 # shellcheck disable=SC1091
 source start.sh &
 echo 'LanguageTool server started?'
+curl --data "language=en-US&text=a simple test" http://localhost:8010/v2/check
 
 if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
