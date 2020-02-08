@@ -1,3 +1,1 @@
-Determinisitic result is important.
-
-colour # <= Check -locale
+It doesn't works on an unix environment.
