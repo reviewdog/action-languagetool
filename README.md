@@ -105,3 +105,5 @@ reviewdog version.
 
 [![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-template/pull/6)
 
+
+It doesn't works on an unix environment.
