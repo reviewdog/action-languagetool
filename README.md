@@ -1,4 +1,4 @@
-# action-tlanguagetool
+# action-languagetool
 
 [![Test](https://github.com/reviewdog/action-languagetool/workflows/Test/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3ATest)
 [![reviewdog](https://github.com/reviewdog/action-languagetool/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3Areviewdog)
