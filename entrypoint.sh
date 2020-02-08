@@ -1,12 +1,6 @@
 #!/bin/sh
 set -eo pipefail
 
-mkdir /ngrams
-cd /ngrams
-wget https://languagetool.org/download/ngram-data/ngrams-en-20150817.zip
-unzip -o en ngrams-en-20150817.zip
-ls /ngrams
-
 java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
 sleep 3 # Wait the server statup.
 
