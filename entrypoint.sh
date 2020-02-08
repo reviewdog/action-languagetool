@@ -13,12 +13,12 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 run_langtool() {
   # test
-  echo "langugage=${INPUT_LANGUAGE}"
-  echo "enabledRules=${INPUT_ENABLED_RULES}"
-  echo "disabledRules=${INPUT_DISABLED_RULES}"
-  echo "enabledCategories=${INPUT_ENABLED_CATEGORIES}"
-  echo "disabledCategories=${INPUT_DISABLED_CATEGORIES}"
-  echo "enabledOnly=${INPUT_ENABLED_ONLY}"
+  echo "langugage=${INPUT_LANGUAGE}" >&2
+  echo "enabledRules=${INPUT_ENABLED_RULES}" >&2
+  echo "disabledRules=${INPUT_DISABLED_RULES}" >&2
+  echo "enabledCategories=${INPUT_ENABLED_CATEGORIES}" >&2
+  echo "disabledCategories=${INPUT_DISABLED_CATEGORIES}" >&2
+  echo "enabledOnly=${INPUT_ENABLED_ONLY}" >&2
 
   # for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
   #   # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
