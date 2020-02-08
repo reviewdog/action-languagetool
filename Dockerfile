@@ -5,6 +5,8 @@ ENV REVIEWDOG_VERSION=v0.9.17
 ENV TMPL_VERSION=v1.1.0
 ENV OFFSET_VERSION=v1.0.2
 
+USER root
+
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 # hadolint ignore=DL3006
@@ -15,7 +17,5 @@ RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/in
   wget -O - -q https://raw.githubusercontent.com/haya14busa/offset/master/install.sh| sh -s -- -b /usr/local/bin/ ${OFFSET_VERSION}
 
 COPY entrypoint.sh /entrypoint.sh
-
-USER root
 
 ENTRYPOINT ["/entrypoint.sh"]
