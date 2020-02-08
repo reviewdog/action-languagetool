@@ -18,7 +18,7 @@ for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
   curl --data "language=en-US" \
     --data-urlencode "text=$(cat "${FILE}")" \
     http://localhost:8010/v2/check | \
-    tmpl /langtool.tmpl
+    FILE="${FILE}" tmpl /langtool.tmpl
 done
 
 # misspell -locale="${INPUT_LOCALE}" . \
