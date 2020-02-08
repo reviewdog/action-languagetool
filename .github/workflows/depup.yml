@@ -66,7 +66,7 @@ jobs:
         id: depup
         with:
           file: Dockerfile
-          version_name: TMPL_VERSION
+          version_name: OFFSET_VERSION
           repo: haya14busa/offset
 
       - name: Create Pull Request
@@ -92,7 +92,7 @@ jobs:
         id: depup
         with:
           file: Dockerfile
-          version_name: TMPL_VERSION
+          version_name: GHGLOB_VERSION
           repo: haya14busa/ghglob
 
       - name: Create Pull Request
