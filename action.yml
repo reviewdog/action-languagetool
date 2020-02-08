@@ -25,7 +25,7 @@ inputs:
     description: 'comma separeted enabledRules of LanguageTool'
   disabled_rules:
     description: 'comma separeted disabledRules of LanguageTool'
-    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE'
+    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY'
   enabled_categories:
     description: 'comma separeted enabledCategories of LanguageTool'
   disabled_categories:
