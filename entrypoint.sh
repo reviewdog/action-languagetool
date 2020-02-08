@@ -33,7 +33,7 @@ run_langtool() {
       --request POST \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
-      http://localhost:8010/v2/check | \
+      http://localhost:8010/v2/check | tee /dev/stderr | \
       FILE="${FILE}" tmpl /langtool.tmpl
   done
 }
