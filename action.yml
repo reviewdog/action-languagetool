@@ -25,12 +25,12 @@ inputs:
     description: 'comma separeted enabledRules of LanguageTool'
   disabled_rules:
     description: 'comma separeted disabledRules of LanguageTool'
-    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY'
+    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END'
   enabled_categories:
     description: 'comma separeted enabledCategories of LanguageTool'
   disabled_categories:
     description: 'comma separeted disabledCategories of LanguageTool'
-    default: 'TYPOS'
+    default: 'TYPOS,TYPOGRAPHY'
   enabled_only:
     description: 'enabledOnly of LanguageTool'
     default: 'false'
