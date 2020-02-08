@@ -32,6 +32,9 @@ if [ -n "${INPUT_ENABLED_ONLY}" ]; then
   DATA="$DATA&enabledOnly=${INPUT_ENABLED_ONLY}"
 fi
 
+echo 'git ls-files'
+git ls-files
+echo "ghglob ${INPUT_PATTERNS}"
 git ls-files | ghglob ${INPUT_PATTERNS}
 for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
   echo "FILE:$FILE"
