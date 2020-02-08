@@ -28,6 +28,7 @@ fi
 
 run_langtool() {
   for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
+    echo "Checking ${FILE}..." >&2
     curl \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
