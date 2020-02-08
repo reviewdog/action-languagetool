@@ -1,6 +1,15 @@
 #!/bin/sh
 set -e
 
+# test
+echo "langugage=${INPUT_LANGUAGE}"
+echo "enabledRules=${INPUT_ENABLED_RULES}"
+echo "disabledRules=${INPUT_DISABLED_RULES}"
+echo "enabledCategories=${INPUT_ENABLED_CATEGORIES}"
+echo "disabledCategories=${INPUT_DISABLED_CATEGORIES}"
+echo "enabledOnly=${INPUT_ENABLED_ONLY}"
+exit
+
 java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
 sleep 3 # Wait the server statup.
 
@@ -13,7 +22,6 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 run_langtool() {
   for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
     # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
-    echo "INPUT_LANGUAGE: ${INPUT_LANGUAGE}"
     curl \
       --data-urlencode "langugage=${INPUT_LANGUAGE}" \
       --data-urlencode "enabledRules=${INPUT_ENABLED_RULES}" \
