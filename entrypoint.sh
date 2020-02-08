@@ -42,8 +42,13 @@ for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
   echo "FILE:$FILE"
 done
 
+# Disable glob to handle glob patterns with ghglob command instead of with shell.
+set -o noglob
+FILES="$(git ls-files | ghglob ${INPUT_PATTERNS})"
+set +o noglob
+
 run_langtool() {
-  for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
+  for FILE in ${FILES}; do
     echo "Checking ${FILE}..." >&2
     curl --silent \
       --request POST \
