@@ -1,8 +1,6 @@
 #!/bin/sh
 set -e
 
-LANGTOOL_DATA="language=en-US"
-
 java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
 sleep 3 # Wait the server statup.
 
@@ -15,6 +13,7 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 run_langtool() {
   for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
     # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+    echo "INPUT_LANGUAGE: ${INPUT_LANGUAGE}"
     curl \
       --data-urlencode "langugage=${INPUT_LANGUAGE}" \
       --data-urlencode "enabledRules=${INPUT_ENABLED_RULES}" \
