@@ -42,7 +42,6 @@ runs:
   image: 'Dockerfile'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
-# TODO: update branding if you want.
 branding:
-  icon: 'check'
+  icon: 'type'
   color: 'blue'
