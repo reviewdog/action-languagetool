@@ -4,7 +4,7 @@ set -e
 LANGTOOL_DATA="language=en-US"
 
 java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
-sleep 1 # Wait the server statup.
+sleep 3 # Wait the server statup.
 
 if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
