@@ -30,6 +30,7 @@ run_langtool() {
   for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
     echo "Checking ${FILE}..." >&2
     curl \
+      --request POST \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
       http://localhost:8010/v2/check | \
@@ -40,4 +41,4 @@ run_langtool() {
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 run_langtool \
-  | reviewdog -efm="%A%f:%l:%c: %m" -efm="%C %m" -name="LanguageTool" -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}"
+  | reviewdog -efm="%A%f:%l:%c: %m" -efm="%C %m" -name="LanguageTool" -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}" -tee
