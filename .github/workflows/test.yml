@@ -28,7 +28,7 @@ jobs:
           reporter: github-pr-check
           level: info
           patterns: |
-            README.md
+            **.md
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -43,5 +43,4 @@ jobs:
           level: info
           patterns: |
             **/*.md
-            !README.md
           custom_api_endpoint: https://languagetool.org/api
