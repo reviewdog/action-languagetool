@@ -1,3 +1,5 @@
+It maybe helpful in the future if Austin Energy goes combined cycle.
+
 # action-template
 
 <!-- TODO: replace reviewdog/action-template with your repo name -->
