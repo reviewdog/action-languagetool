@@ -32,16 +32,6 @@ if [ -n "${INPUT_ENABLED_ONLY}" ]; then
   DATA="$DATA&enabledOnly=${INPUT_ENABLED_ONLY}"
 fi
 
-echo 'git ls-files'
-git ls-files
-echo "ghglob ${INPUT_PATTERNS}"
-git ls-files | ghglob ${INPUT_PATTERNS}
-echo "ghglob with quote"
-git ls-files | ghglob "**/*.md"
-for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
-  echo "FILE:$FILE"
-done
-
 # Disable glob to handle glob patterns with ghglob command instead of with shell.
 set -o noglob
 FILES="$(git ls-files | ghglob ${INPUT_PATTERNS})"
