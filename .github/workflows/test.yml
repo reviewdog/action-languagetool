@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   test-check:
-    name: runner / <linter-name> (github-check)
+    name: runner / languagetool (github-check)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,11 +15,10 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
           level: info
-          locale: "US"
 
   test-pr-check:
     if: github.event_name == 'pull_request'
-    name: runner / <linter-name> (github-pr-check)
+    name: runner / languagetool (github-pr-check)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,12 +26,13 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
-          level: error
-          locale: "US"
+          level: info
+          patterns: |
+            README.md
 
   test-pr-review:
     if: github.event_name == 'pull_request'
-    name: runner / <linter-name> (github-pr-review)
+    name: runner / languagetool (github-pr-review)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -40,5 +40,8 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          level: error
-          locale: "US"
+          level: info
+          patterns: |
+            **/*.md
+            !README.md
+          custom_api_endpoint: https://languagetool.org/api

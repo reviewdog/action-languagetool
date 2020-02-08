@@ -1,0 +1,28 @@
+{{- $result := . -}}
+
+{{ range $_, $m := .matches -}}
+  {{- /* <file>:<line>:<col>: <message><rule> */ -}}
+  {{ env "FILE" }}:{{ (pos.Offset (env "FILE") $m.offset).Line }}:{{ (pos.Offset (env "FILE") $m.offset).Column }}: {{ $m.message }}
+  {{- sp}}({{ $m.rule.id }}{{ if $m.rule.subId }}[{{ $m.rule.subId }}]{{end}}){{- nl -}}
+
+  {{- /* Suggestions */ -}}
+  {{ if ne (len $m.replacements) 0 -}}
+    {{sp}}Suggestions: {{ range $i, $r := $m.replacements -}}{{ if ne $i 0 }},{{sp}}{{end}}`{{ $r.value }}`{{ end -}}
+    {{- nl -}}
+  {{ end }}
+
+  {{- /* URLs */ -}}
+  {{ if $m.rule.urls }}{{ if ne (len $m.rule.urls) 0 -}}
+    {{sp}}URL: {{ range $_, $u := $m.rule.urls -}}{{ $u.value }}{{sp}}{{- end -}}
+    {{- nl -}}
+  {{ end }}{{ end }}
+
+  {{- /* Rule URL */ -}}
+  {{sp}}Rule: https://community.languagetool.org/rule/show/{{ $m.rule.id }}?lang={{ $result.language.code }}
+  {{- if $m.rule.subId }}&subId={{ $m.rule.subId }}{{end}}{{- nl -}}
+
+  {{- /* Category */ -}}
+  {{sp}}Category: {{ $m.rule.category.id }}
+
+  {{- nl -}}
+{{- end -}}
