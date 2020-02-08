@@ -36,6 +36,8 @@ echo 'git ls-files'
 git ls-files
 echo "ghglob ${INPUT_PATTERNS}"
 git ls-files | ghglob ${INPUT_PATTERNS}
+echo "ghglob with quote"
+git ls-files | ghglob "**/*.md"
 for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
   echo "FILE:$FILE"
 done
