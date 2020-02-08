@@ -44,4 +44,4 @@ jobs:
           patterns: |
             **/*.md
             !README.md
-          custom_api_endpoint: https://languagetool.org
+          custom_api_endpoint: https://languagetool.org/api
