@@ -29,7 +29,7 @@ jobs:
           level: info
           patterns: |
             README.md
-          custom_api_endpoint: https://api.languagetoolplus.com
+          custom_api_endpoint: https://languagetool.org
 
   test-pr-review:
     if: github.event_name == 'pull_request'
