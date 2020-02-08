@@ -3,7 +3,9 @@ set -e
 
 ls /
 
-java -cp /LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar org.languagetool.server.HTTPServer --port 8010
+echo "LANGUAGETOOL_VERSION: ${LANGUAGETOOL_VERSION}"
+
+java -cp /LanguageTool-4.8/languagetool-server.jar org.languagetool.server.HTTPServer --port 8010
 curl --data "language=en-US&text=a simple test" http://localhost:8010/v2/check
 
 if [ -n "${GITHUB_WORKSPACE}" ]; then
