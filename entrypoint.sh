@@ -1,8 +1,12 @@
 #!/bin/sh
 set -eo pipefail
 
-java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
-sleep 3 # Wait the server statup.
+API_ENDPOINT="${INPUT_CUSTOM_API_ENDPOINT}"
+if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
+  API_ENDPOINT=http://localhost:8010
+  java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
+  sleep 3 # Wait the server statup.
+fi
 
 if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
@@ -33,7 +37,7 @@ run_langtool() {
       --request POST \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
-      http://localhost:8010/v2/check | tee /dev/stderr | \
+      "${API_ENDPOINT}/v2/check" | tee /dev/stderr | \
       FILE="${FILE}" tmpl /langtool.tmpl
   done
 }
