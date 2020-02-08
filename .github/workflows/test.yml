@@ -29,6 +29,7 @@ jobs:
           level: info
           patterns: |
             README.md
+          custom_api_endpoint: https://api.languagetoolplus.com
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -44,3 +45,4 @@ jobs:
           patterns: |
             **/*.md
             !README.md
+          custom_api_endpoint: https://api.languagetool.org

@@ -35,7 +35,7 @@ inputs:
     description: 'enabledOnly of LanguageTool'
     default: 'false'
   custom_api_endpoint:
-    description: 'Custom API endpoint of LanguageTool server. e.g. https://api.languagetoolplus.com/v2/check'
+    description: 'Custom API endpoint of LanguageTool server. e.g. https://api.languagetoolplus.com'
     default: ''
 runs:
   using: 'docker'

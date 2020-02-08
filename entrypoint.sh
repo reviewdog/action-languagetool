@@ -8,6 +8,8 @@ if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
   sleep 3 # Wait the server statup.
 fi
 
+echo "API ENDPOINT: ${API_ENDPOINT}" >&2
+
 if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
 fi
