@@ -1,31 +1,19 @@
-It maybe helpful in the future if Austin Energy goes combined cycle.
+# action-tlanguagetool
 
-# action-template
-
-<!-- TODO: replace reviewdog/action-template with your repo name -->
-[![Test](https://github.com/reviewdog/action-template/workflows/Test/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3ATest)
-[![reviewdog](https://github.com/reviewdog/action-template/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Areviewdog)
-[![depup](https://github.com/reviewdog/action-template/workflows/depup/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Adepup)
-[![release](https://github.com/reviewdog/action-template/workflows/release/badge.svg)](https://github.com/reviewdog/action-template/actions?query=workflow%3Arelease)
-[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-template?logo=github&sort=semver)](https://github.com/reviewdog/action-template/releases)
+[![Test](https://github.com/reviewdog/action-languagetool/workflows/Test/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3ATest)
+[![reviewdog](https://github.com/reviewdog/action-languagetool/workflows/reviewdog/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3Areviewdog)
+[![depup](https://github.com/reviewdog/action-languagetool/workflows/depup/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3Adepup)
+[![release](https://github.com/reviewdog/action-languagetool/workflows/release/badge.svg)](https://github.com/reviewdog/action-languagetool/actions?query=workflow%3Arelease)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/reviewdog/action-languagetool?logo=github&sort=semver)](https://github.com/reviewdog/action-languagetool/releases)
 [![action-bumpr supported](https://img.shields.io/badge/bumpr-supported-ff69b4?logo=github&link=https://github.com/haya14busa/action-bumpr)](https://github.com/haya14busa/action-bumpr)
 
-![github-pr-review demo](https://user-images.githubusercontent.com/3797062/73162963-4b8e2b00-4132-11ea-9a3f-f9c6f624c79f.png)
-![github-pr-check demo](https://user-images.githubusercontent.com/3797062/73163032-70829e00-4132-11ea-8481-f213a37db354.png)
+![github-pr-review demo](https://user-images.githubusercontent.com/3797062/74084817-31e7ce80-4ab6-11ea-9d7f-621a9861148c.png)
+![github-pr-check demo](https://user-images.githubusercontent.com/3797062/74084838-5ba0f580-4ab6-11ea-85fa-0944ff7709b5.png)
 
-This is a template repository for [reviewdog](https://github.com/reviewdog/reviewdog) action with release automation.
-Click `Use this template` button to create your reviewdog action :dog:!
-
-If you want to create your own reviewdog action from scratch without using this
-template, please check and copy release automation flow.
-It's important to manage release workflow and sync reviewdog version for all
-reviewdog actions.
-
-This repo contains a sample action to run [misspell](https://github.com/client9/misspell).
+This action runs [LanguageTool](https://github.com/languagetool-org/languagetool) check with reviewdog on pull requests to improve code review experience.
 
 ## Input
 
-<!-- TODO: update -->
 ```yaml
 inputs:
   github_token:
@@ -36,35 +24,53 @@ inputs:
     description: 'Report level for reviewdog [info,warning,error]'
     default: 'error'
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-check,github-pr-review].'
+    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
-  ### Flags for <linter-name> ###
-  locale:
-    description: '-locale flag of misspell. (US/UK)'
+  ### Flags for target file ###
+  patterns:
+    description: 'Space separated target file glob patterns. https://github.com/haya14busa/ghglob'
+    default: '**/*.md **/*.txt'
+  ### Flags for LanguageTool ###
+  # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+  language:
+    description: 'language of LanguageTool'
+    default: 'en-US'
+  enabled_rules:
+    description: 'comma separeted enabledRules of LanguageTool'
+  disabled_rules:
+    description: 'comma separeted disabledRules of LanguageTool'
+    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE'
+  enabled_categories:
+    description: 'comma separeted enabledCategories of LanguageTool'
+  disabled_categories:
+    description: 'comma separeted disabledCategories of LanguageTool'
+    default: 'TYPOS'
+  enabled_only:
+    description: 'enabledOnly of LanguageTool'
+    default: 'false'
+  custom_api_endpoint:
+    description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
     default: ''
 ```
 
 ## Usage
-<!-- TODO: update. replace `template` with the linter name -->
 
 ```yaml
 name: reviewdog
 on: [pull_request]
 jobs:
-  # TODO: change `linter_name`.
   linter_name:
     name: runner / <linter-name>
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: reviewdog/action-template@v1
+      - uses: reviewdog/action-languagetool@v1
         with:
           github_token: ${{ secrets.github_token }}
           # Change reviewdog reporter if you need [github-pr-check,github-check,github-pr-review].
           reporter: github-pr-review
           # Change reporter level if you need.
-          # GitHub Status Check won't become failure with warning.
-          level: warning
+          level: info
 ```
 
 ## Development
