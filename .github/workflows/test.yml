@@ -26,7 +26,9 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
-          level: error
+          level: info
+          patterns: |
+            README.md
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -38,4 +40,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
-          level: error
+          level: info
+          patterns: |
+            **/*.md
+            !README.md

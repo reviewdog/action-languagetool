@@ -12,6 +12,10 @@ inputs:
   reporter:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
+  ### Flags for target file ###
+  patterns:
+    description: 'Space separated target file glob patterns. https://github.com/haya14busa/ghglob'
+    default: '**/*.md **/*.txt'
   ### Flags for LanguageTool ###
   # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
   language:

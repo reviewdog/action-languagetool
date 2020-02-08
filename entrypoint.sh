@@ -27,7 +27,7 @@ if [ -n "${INPUT_ENABLED_ONLY}" ]; then
 fi
 
 run_langtool() {
-  for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
+  for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
     curl \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
