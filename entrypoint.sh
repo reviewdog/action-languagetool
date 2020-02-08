@@ -32,6 +32,11 @@ if [ -n "${INPUT_ENABLED_ONLY}" ]; then
   DATA="$DATA&enabledOnly=${INPUT_ENABLED_ONLY}"
 fi
 
+git ls-files | ghglob ${INPUT_PATTERNS}
+for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
+  echo "FILE:$FILE"
+done
+
 run_langtool() {
   for FILE in $(git ls-files | ghglob ${INPUT_PATTERNS}); do
     echo "Checking ${FILE}..." >&2
