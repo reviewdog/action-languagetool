@@ -3,7 +3,7 @@
 {{ range $_, $m := .matches -}}
   {{- /* <file>:<line>:<col>: <message><rule> */ -}}
   {{ env "FILE" }}:{{ (pos.Offset (env "FILE") $m.offset).Line }}:{{ (pos.Offset (env "FILE") $m.offset).Column }}: {{ $m.message }}
-  {{- sp}}(RULE={{ $m.rule.id }}{{ if $m.rule.subId }}[{{ $m.rule.subId }}]{{end}},CATEGORY={{ $m.rule.category.id }}){{- nl -}}
+  {{- sp}}({{ $m.rule.id }}{{ if $m.rule.subId }}[{{ $m.rule.subId }}]{{end}}){{- nl -}}
 
   {{- /* Suggestions */ -}}
   {{ if ne (len $m.replacements) 0 -}}
@@ -19,7 +19,10 @@
 
   {{- /* Rule URL */ -}}
   {{sp}}Rule: https://community.languagetool.org/rule/show/{{ $m.rule.id }}?lang={{ $result.language.code }}
-  {{- if $m.rule.subId }}&subId={{ $m.rule.subId }}{{end}}
+  {{- if $m.rule.subId }}&subId={{ $m.rule.subId }}{{end}}{{- nl -}}
+
+  {{- /* Category */ -}}
+  {{sp}}Category: {{ $m.rule.category.id }}
 
   {{- nl -}}
 {{- end -}}
