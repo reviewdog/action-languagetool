@@ -2,8 +2,8 @@ FROM erikvl87/languagetool:4.8
 # https://github.com/Erikvl87/docker-languagetool
 
 ENV REVIEWDOG_VERSION=v0.9.17
-    TMPL_VERSION=v1.1.0
-    OFFSET_VERSION=v1.0.2
+ENV TMPL_VERSION=v1.1.0
+ENV OFFSET_VERSION=v1.0.2
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
