@@ -23,7 +23,7 @@ run_langtool() {
     # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
       # --data "langugage=${INPUT_LANGUAGE}&enabledRules=${INPUT_ENABLED_RULES}&disabledRules=${INPUT_DISABLED_RULES}&enabledCategories=${INPUT_ENABLED_CATEGORIES}&disabledCategories=${INPUT_DISABLED_CATEGORIES}&enabledOnly=${INPUT_ENABLED_ONLY}" \
     curl \
-      --data "langugage=${INPUT_LANGUAGE}" \
+      --data "langugage=$(echo ${INPUT_LANGUAGE})" \
       --data-urlencode "text=$(cat "${FILE}")" \
       http://localhost:8010/v2/check | \
       FILE="${FILE}" tmpl /langtool.tmpl
