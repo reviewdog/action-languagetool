@@ -11,19 +11,15 @@ fi
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 run_langtool() {
-  # test
-  echo "langugage=${INPUT_LANGUAGE}" >&2
-  echo "enabledRules=${INPUT_ENABLED_RULES}" >&2
-  echo "disabledRules=${INPUT_DISABLED_RULES}" >&2
-  echo "enabledCategories=${INPUT_ENABLED_CATEGORIES}" >&2
-  echo "disabledCategories=${INPUT_DISABLED_CATEGORIES}" >&2
-  echo "enabledOnly=${INPUT_ENABLED_ONLY}" >&2
-
   for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
     # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
-      # --data "langugage=${INPUT_LANGUAGE}&enabledRules=${INPUT_ENABLED_RULES}&disabledRules=${INPUT_DISABLED_RULES}&enabledCategories=${INPUT_ENABLED_CATEGORIES}&disabledCategories=${INPUT_DISABLED_CATEGORIES}&enabledOnly=${INPUT_ENABLED_ONLY}" \
     curl \
-      --data "langugage=$(echo ${INPUT_LANGUAGE})" \
+      --data-urlencode "language=${INPUT_LANGUAGE}" \
+      --data-urlencode "enabledRules=${INPUT_ENABLED_RULES}" \
+      --data-urlencode "disabledRules=${INPUT_DISABLED_RULES}" \
+      --data-urlencode "enabledCategories=${INPUT_ENABLED_CATEGORIES}" \
+      --data-urlencode "disabledCategories=${INPUT_DISABLED_CATEGORIES}" \
+      --data-urlencode "enabledOnly=${INPUT_ENABLED_ONLY}" \
       --data-urlencode "text=$(cat "${FILE}")" \
       http://localhost:8010/v2/check | \
       FILE="${FILE}" tmpl /langtool.tmpl
