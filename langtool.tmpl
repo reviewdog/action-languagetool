@@ -3,7 +3,7 @@
 {{ range $_, $m := .matches -}}
   {{- /* <file>:<line>:<col>: <message><rule> */ -}}
   {{ env "FILE" }}:{{ (pos.Offset (env "FILE") $m.offset).Line }}:{{ (pos.Offset (env "FILE") $m.offset).Column }}: {{ $m.message }}
-  {{- sp}}({{ $m.rule.id }}{{ if $m.rule.subId }}[{{ $m.rule.subId }}]{{end}}){{- nl -}}
+  {{- sp}}(RULE={{ $m.rule.id }}{{ if $m.rule.subId }}[{{ $m.rule.subId }}]{{end}},CATEGORY={{ $m.rule.category.id }}){{- nl -}}
 
   {{- /* Suggestions */ -}}
   {{ if ne (len $m.replacements) 0 -}}
