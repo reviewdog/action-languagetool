@@ -44,7 +44,7 @@ run_langtool() {
       --request POST \
       --data "${DATA}" \
       --data-urlencode "text=$(cat "${FILE}")" \
-      "${API_ENDPOINT}/v2/check" | tee /dev/stderr | \
+      "${API_ENDPOINT}/v2/check" | \
       FILE="${FILE}" tmpl /langtool.tmpl
   done
 }
