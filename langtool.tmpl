@@ -7,7 +7,7 @@
 
   {{- /* Suggestions */ -}}
   {{ if ne (len $m.replacements) 0 -}}
-    {{sp}}Suggestions: {{ range $_, $r := $m.replacements -}}{{ $r.value }}{{sp}}{{ end -}}
+    {{sp}}Suggestions: {{ range $i, $r := $m.replacements -}}{{ if ne $i 0 }},{{sp}}{{end}}`{{ $r.value }}`{{ end -}}
     {{- nl -}}
   {{ end }}
 
