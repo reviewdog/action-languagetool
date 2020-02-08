@@ -27,8 +27,6 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-check
           level: info
-          patterns: |
-            **.md
 
   test-pr-review:
     if: github.event_name == 'pull_request'
@@ -41,6 +39,5 @@ jobs:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
           level: info
-          patterns: |
-            **/*.md
+          patterns: "**.md"
           custom_api_endpoint: https://languagetool.org/api
