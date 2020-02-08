@@ -13,7 +13,23 @@ inputs:
     description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
     default: 'github-pr-check'
   ### Flags for LanguageTool ###
-  # TODO
+  # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+  language:
+    description: 'language of LanguageTool'
+    default: 'en-US'
+  enabled_rules:
+    description: 'comma separeted enabledRules of LanguageTool'
+  disabled_rules:
+    description: 'comma separeted disabledRules of LanguageTool'
+    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE'
+  enabled_categories:
+    description: 'comma separeted enabledCategories of LanguageTool'
+  disabled_categories:
+    description: 'comma separeted disabledCategories of LanguageTool'
+    default: 'TYPOS'
+  enabled_only:
+    description: 'enabledOnly of LanguageTool'
+    default: 'false'
 runs:
   using: 'docker'
   image: 'Dockerfile'

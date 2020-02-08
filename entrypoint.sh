@@ -14,7 +14,14 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 run_langtool() {
   for FILE in $(git ls-files | ghglob '**/*.md' '**/*.txt'); do
-    curl --data "language=en-US" \
+    # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+    curl \
+      --data-urlencode "langugage=${INPUT_LANGUAGE}" \
+      --data-urlencode "enabledRules=${INPUT_ENABLED_RULES}" \
+      --data-urlencode "disabledRules=${INPUT_DISABLED_RULES}" \
+      --data-urlencode "enabledCategories=${INPUT_ENABLED_CATEGORIES}" \
+      --data-urlencode "disabledCategories=${INPUT_DISABLED_CATEGORIES}" \
+      --data-urlencode "enabledOnly=${INPUT_ENABLED_ONLY}" \
       --data-urlencode "text=$(cat "${FILE}")" \
       http://localhost:8010/v2/check | \
       FILE="${FILE}" tmpl /langtool.tmpl
