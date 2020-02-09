@@ -10,7 +10,7 @@
 ![github-pr-review demo](https://user-images.githubusercontent.com/3797062/74084817-31e7ce80-4ab6-11ea-9d7f-621a9861148c.png)
 ![github-pr-check demo](https://user-images.githubusercontent.com/3797062/74084838-5ba0f580-4ab6-11ea-85fa-0944ff7709b5.png)
 
-This action runs [LanguageTool](https://github.com/languagetool-org/languagetool) check with reviewdog on pull requests to improve code review experience.
+This action runs [LanguageTool](https://github.com/languagetool-org/languagetool) check with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
 
 ## Input
 
