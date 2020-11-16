@@ -28,6 +28,7 @@ INPUT_DISABLED_CATEGORIES="${INPUT_DISABLED_CATEGORIES:-${DISABLED_CATEGORIES}}"
 INPUT_ENABLED_ONLY="${INPUT_ENABLED_ONLY:-${ENABLED_ONLY}}"
 INPUT_PATTERNS="${INPUT_PATTERNS:-${PATTERNS}}"
 INPUT_REPORTER="${INPUT_REPORTER:-${REPORTER}}"
+INPUT_EXTRA_ARGS="${INPUT_EXTRA_ARGS:-${EXTRA_ARGS}}"
 
 API_ENDPOINT="${INPUT_CUSTOM_API_ENDPOINT}"
 if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
@@ -80,4 +81,4 @@ run_langtool() {
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 run_langtool \
-  | reviewdog -efm="%A%f:%l:%c: %m" -efm="%C %m" -name="LanguageTool" -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}"
+  | reviewdog -efm="%A%f:%l:%c: %m" -efm="%C %m" -name="LanguageTool" -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}" ${INPUT_EXTRA_ARGS}
