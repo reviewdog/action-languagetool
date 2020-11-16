@@ -9,7 +9,7 @@ LEVEL="${LEVEL:-error}"
 if [ -z "${BITBUCKET_PIPELINE_UUID}" ]; then 
   REPORTER="${REPORTER:-github-pr-check}"
 else
-  REPORTER="bitbucket-code-report"
+  REPORTER="${REPORTER:-bitbucket-code-report}"
 fi
 PATTERNS="${PATTERNS:-**/*.md **/*.txt}"
 LANGUAGE="${LANGUAGE:-en-US}"
