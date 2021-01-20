@@ -4,7 +4,7 @@ set -eo pipefail
 API_ENDPOINT="${INPUT_CUSTOM_API_ENDPOINT}"
 if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
   API_ENDPOINT=http://localhost:8010
-  java -cp "/LanguageTool-${LANGUAGETOOL_VERSION}/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
+  java -cp "/LanguageTool/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
   sleep 3 # Wait the server statup.
 fi
 
