@@ -19,6 +19,8 @@ RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/in
   wget -O - -q https://raw.githubusercontent.com/haya14busa/offset/master/install.sh| sh -s -- -b /usr/local/bin/ ${OFFSET_VERSION} && \
   wget -O - -q https://raw.githubusercontent.com/haya14busa/ghglob/master/install.sh| sh -s -- -b /usr/local/bin/ ${GHGLOB_VERSION}
 
+RUN npm install alex --global
+
 COPY entrypoint.sh /entrypoint.sh
 COPY langtool.tmpl /langtool.tmpl
 

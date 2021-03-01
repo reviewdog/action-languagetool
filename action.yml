@@ -37,6 +37,10 @@ inputs:
   custom_api_endpoint:
     description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
     default: ''
+  ### Flags for alex ###
+  alex_flags:
+    description: 'Flags for alex'
+    default: '.'
 runs:
   using: 'docker'
   image: 'Dockerfile'
