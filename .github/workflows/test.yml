@@ -5,28 +5,28 @@ on:
       - master
   pull_request:
 jobs:
-  test-check:
-    name: runner / languagetool (github-check)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-check
-          level: info
+  # test-check:
+  #   name: runner / languagetool (github-check)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: ./
+  #       with:
+  #         github_token: ${{ secrets.github_token }}
+  #         reporter: github-check
+  #         level: info
 
-  test-pr-check:
-    if: github.event_name == 'pull_request'
-    name: runner / languagetool (github-pr-check)
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: ./
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: github-pr-check
-          level: info
+  # test-pr-check:
+  #   if: github.event_name == 'pull_request'
+  #   name: runner / languagetool (github-pr-check)
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: ./
+  #       with:
+  #         github_token: ${{ secrets.github_token }}
+  #         reporter: github-pr-check
+  #         level: info
 
   test-pr-review:
     if: github.event_name == 'pull_request'
