@@ -30,7 +30,7 @@ inputs:
     description: 'comma separeted enabledCategories of LanguageTool'
   disabled_categories:
     description: 'comma separeted disabledCategories of LanguageTool'
-    default: 'TYPOS,TYPOGRAPHY'
+    # default: 'TYPOS,TYPOGRAPHY'
   enabled_only:
     description: 'enabledOnly of LanguageTool'
     default: 'false'
