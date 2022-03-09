@@ -9,7 +9,7 @@ jobs:
     name: runner / languagetool (github-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
@@ -21,7 +21,7 @@ jobs:
     name: runner / languagetool (github-pr-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
@@ -33,7 +33,7 @@ jobs:
     name: runner / languagetool (github-pr-review)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: ./
         with:
           github_token: ${{ secrets.github_token }}
