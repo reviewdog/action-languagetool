@@ -14,6 +14,8 @@ if [ -n "${GITHUB_WORKSPACE}" ]; then
   cd "${GITHUB_WORKSPACE}" || exit
 fi
 
+git config --global --add safe.directory $GITHUB_WORKSPACE
+
 # https://languagetool.org/http-api/swagger-ui/#!/default/post_check
 DATA="language=${INPUT_LANGUAGE}"
 if [ -n "${INPUT_ENABLED_RULES}" ]; then
