@@ -1,10 +1,10 @@
-FROM erikvl87/languagetool:5.9
+FROM erikvl87/languagetool:6.1
 # https://github.com/Erikvl87/docker-languagetool
 
 ENV REVIEWDOG_VERSION=v0.14.1
 ENV TMPL_VERSION=v1.2.0
 ENV OFFSET_VERSION=v1.0.6
-ENV LANGUAGETOOL_VERSION=5.2
+ENV LANGUAGETOOL_VERSION=6.1
 ENV GHGLOB_VERSION=v2.0.2
 
 USER root
@@ -12,7 +12,7 @@ USER root
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 # hadolint ignore=DL3006
-RUN apk --no-cache add git curl
+RUN apk --no-cache add git curl jq
 
 RUN wget -O - -q https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b /usr/local/bin/ ${REVIEWDOG_VERSION} && \
   wget -O - -q https://raw.githubusercontent.com/haya14busa/tmpl/master/install.sh| sh -s -- -b /usr/local/bin/ ${TMPL_VERSION} && \
