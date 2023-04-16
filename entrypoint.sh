@@ -47,6 +47,7 @@ if [ -n "${INPUT_SPELLING_FILE}" ]; then
 	echo "Word count of ${INPUT_SPELLING_FILE}: $(wc -w <"${INPUT_SPELLING_FILE}")" >&2
 	spelling_file_path="/LanguageTool/org/languagetool/resource/en/hunspell/spelling.txt"
 	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
+	echo "" >>"${spelling_file_path}"
 	cat "${INPUT_SPELLING_FILE}" >>"${spelling_file_path}"
 	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
 fi
