@@ -76,7 +76,7 @@ urlencode() {
 
 run_langtool() {
 	for FILE in ${FILES}; do
-		DATA_JSON=$(node annotate.js "${FILE}")
+		DATA_JSON=$(node /annotate.js "${FILE}")
 		ENCODED_DATA_JSON=$(urlencode "${DATA_JSON}")
 		DATA_FOR_FILE="${DATA}&data=${ENCODED_DATA_JSON}"
 		RESPONSE_JSON=$(curl --silent \
