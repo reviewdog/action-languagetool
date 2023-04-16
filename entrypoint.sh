@@ -43,12 +43,12 @@ fi
 # Disable glob to handle glob patterns with ghglob command instead of with shell.
 set -o noglob
 
-# if INPUT_SPELLING_FILE is set, copy the file to org/languagetool/resource/en/hunspell/spelling.txt
 if [ -n "${INPUT_SPELLING_FILE}" ]; then
-	echo "Copying spelling file ${INPUT_SPELLING_FILE} to org/languagetool/resource/en/hunspell/spelling.txt"
-	cp "${INPUT_SPELLING_FILE}" org/languagetool/resource/en/hunspell/spelling.txt
-	# print wc of spelling.txt
-	echo "spelling.txt has $(wc -l org/languagetool/resource/en/hunspell/spelling.txt) lines"
+	echo "Word count of ${INPUT_SPELLING_FILE}: $(wc -w <"${INPUT_SPELLING_FILE}")" >&2
+	spelling_file_path="/LanguageTool/org/languagetool/resource/en/hunspell/spelling.txt"
+	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
+	cat "${INPUT_SPELLING_FILE}" >>"${spelling_file_path}"
+	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
 fi
 
 if [ "${INPUT_FILTER_MODE}" = "changed" ]; then
