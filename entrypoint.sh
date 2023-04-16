@@ -54,10 +54,18 @@ fi
 
 if [ "${INPUT_FILTER_MODE}" = "changed" ]; then
 	PR_NUMBER=$(echo "${GITHUB_REF}" | awk -F / '{print $3}')
-	FILES="$(curl --silent -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
-		"https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files" |
-		jq -r '.[] | select(.status != "deleted") | .filename' |
-		ghglob "${INPUT_PATTERNS}")"
+	PAGE=1
+	FILES=""
+	while :; do
+		RESPONSE="$(curl --silent -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
+			"https://api.github.com/repos/${GITHUB_REPOSITORY}/pulls/${PR_NUMBER}/files?per_page=100&page=${PAGE}")"
+		PAGE_FILES="$(echo "${RESPONSE}" | jq -r '.[] | select(.status != "deleted") | .filename' | ghglob "${INPUT_PATTERNS}")"
+		if [ -z "${PAGE_FILES}" ]; then
+			break
+		fi
+		FILES="${FILES}${PAGE_FILES}"
+		PAGE=$((PAGE + 1))
+	done
 else
 	FILES="$(git ls-files | ghglob "${INPUT_PATTERNS}")"
 fi
