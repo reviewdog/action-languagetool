@@ -43,6 +43,14 @@ fi
 # Disable glob to handle glob patterns with ghglob command instead of with shell.
 set -o noglob
 
+# if INPUT_SPELLING_FILE is set, copy the file to org/languagetool/resource/en/hunspell/spelling.txt
+if [ -n "${INPUT_SPELLING_FILE}" ]; then
+	echo "Copying spelling file ${INPUT_SPELLING_FILE} to org/languagetool/resource/en/hunspell/spelling.txt"
+	cp "${INPUT_SPELLING_FILE}" org/languagetool/resource/en/hunspell/spelling.txt
+	# print wc of spelling.txt
+	echo "spelling.txt has $(wc -l org/languagetool/resource/en/hunspell/spelling.txt) lines"
+fi
+
 if [ "${INPUT_FILTER_MODE}" = "changed" ]; then
 	PR_NUMBER=$(echo "${GITHUB_REF}" | awk -F / '{print $3}')
 	FILES="$(curl --silent -H "Authorization: token ${INPUT_GITHUB_TOKEN}" \
