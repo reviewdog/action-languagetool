@@ -17,40 +17,40 @@ This action runs [LanguageTool](https://github.com/languagetool-org/languagetool
 ```yaml
 inputs:
   github_token:
-    description: 'GITHUB_TOKEN'
-    default: '${{ github.token }}'
+    description: "GITHUB_TOKEN"
+    default: "${{ github.token }}"
   ### Flags for reviewdog ###
   level:
-    description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
+    description: "Report level for reviewdog [info,warning,error]"
+    default: "error"
   reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
-    default: 'github-pr-check'
+    description: "Reporter of reviewdog command [github-pr-check,github-pr-review]."
+    default: "github-pr-check"
   ### Flags for target file ###
   patterns:
-    description: 'Space separated target file glob patterns. https://github.com/haya14busa/ghglob'
-    default: '**/*.md **/*.txt'
+    description: "Space separated target file glob patterns. https://github.com/haya14busa/ghglob"
+    default: "**/*.md **/*.txt"
   ### Flags for LanguageTool ###
   # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
   language:
-    description: 'language of LanguageTool'
-    default: 'en-US'
+    description: "language of LanguageTool"
+    default: "en-US"
   enabled_rules:
-    description: 'comma separeted enabledRules of LanguageTool'
+    description: "comma separeted enabledRules of LanguageTool"
   disabled_rules:
-    description: 'comma separeted disabledRules of LanguageTool'
-    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END,METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE'
+    description: "comma separeted disabledRules of LanguageTool"
+    default: ""
   enabled_categories:
-    description: 'comma separeted enabledCategories of LanguageTool'
+    description: "comma separeted enabledCategories of LanguageTool"
   disabled_categories:
-    description: 'comma separeted disabledCategories of LanguageTool'
-    default: 'TYPOS'
+    description: "comma separeted disabledCategories of LanguageTool"
+    default: ""
   enabled_only:
-    description: 'enabledOnly of LanguageTool'
-    default: 'false'
-  custom_api_endpoint:
-    description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
-    default: ''
+    description: "enabledOnly of LanguageTool"
+    default: "false"
+  api_endpoint:
+    description: "API endpoint of LanguageTool server. e.g. https://languagetool.org/api"
+    default: ""
 ```
 
 ## Usage
@@ -78,6 +78,7 @@ jobs:
 ### Release
 
 #### [haya14busa/action-bumpr](https://github.com/haya14busa/action-bumpr)
+
 You can bump version on merging Pull Requests with specific labels (bump:major,bump:minor,bump:patch).
 Pushing tag manually by yourself also work.
 
@@ -100,8 +101,8 @@ Supported linters:
 - [reviewdog/action-misspell](https://github.com/reviewdog/action-misspell)
 
 ### Dependencies Update Automation
+
 This repository uses [haya14busa/action-depup](https://github.com/haya14busa/action-depup) to update
 reviewdog version.
 
 [![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-template/pull/6)
-

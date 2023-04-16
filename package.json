@@ -1,0 +1,17 @@
+{
+  "name": "your-module-name",
+  "version": "1.0.0",
+  "description": "Your module description",
+  "main": "annotate.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "annotatedtext-remark": "^1.0.7",
+    "remark-parse": "^10.0.1",
+    "unified": "^10.1.2"
+  }
+}

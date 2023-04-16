@@ -1,14 +1,7 @@
 #!/bin/bash
 set -eo pipefail
 
-API_ENDPOINT="${INPUT_CUSTOM_API_ENDPOINT}"
-if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
-	API_ENDPOINT=http://localhost:8010
-	java -cp "/LanguageTool/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
-	sleep 3 # Wait the server statup.
-fi
-
-echo "API ENDPOINT: ${API_ENDPOINT}" >&2
+echo "API ENDPOINT: ${INPUT_API_ENDPOINT}" >&2
 
 if [ -n "${GITHUB_WORKSPACE}" ]; then
 	cd "${GITHUB_WORKSPACE}" || exit
@@ -43,16 +36,7 @@ fi
 # Disable glob to handle glob patterns with ghglob command instead of with shell.
 set -o noglob
 
-if [ -n "${INPUT_SPELLING_FILE}" ]; then
-	echo "Word count of ${INPUT_SPELLING_FILE}: $(wc -w <"${INPUT_SPELLING_FILE}")" >&2
-	spelling_file_path="/LanguageTool/org/languagetool/resource/en/hunspell/spelling.txt"
-	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
-	echo "" >>"${spelling_file_path}"
-	cat "${INPUT_SPELLING_FILE}" >>"${spelling_file_path}"
-	echo "Word count of ${spelling_file_path}: $(wc -w <"${spelling_file_path}")" >&2
-fi
-
-if [ "${INPUT_FILTER_MODE}" = "changed" ]; then
+if [ "${INPUT_FILTER_FILES}" = "changed" ]; then
 	PR_NUMBER=$(echo "${GITHUB_REF}" | awk -F / '{print $3}')
 	PAGE=1
 	FILES=""
@@ -76,19 +60,44 @@ echo "${FILES}"
 
 set +o noglob
 
+urlencode() {
+	local input="$1"
+	local output=""
+	while IFS= read -r -n1 char; do
+		if [[ "${char}" =~ [a-zA-Z0-9\.\~\_\-] ]]; then
+			output+="${char}"
+		else
+			printf -v hex_char "%02X" "'${char}"
+			output+="%${hex_char}"
+		fi
+	done <<<"${input}"
+	echo "${output}"
+}
+
 run_langtool() {
 	for FILE in ${FILES}; do
-		echo "Checking ${FILE}..." >&2
-		curl --silent \
+		DATA_JSON=$(node annotate.js "${FILE}")
+		ENCODED_DATA_JSON=$(urlencode "${DATA_JSON}")
+		DATA_FOR_FILE="${DATA}&data=${ENCODED_DATA_JSON}"
+		RESPONSE_JSON=$(curl --silent \
 			--request POST \
-			--data "${DATA}" \
-			--data-urlencode "text=$(cat "${FILE}")" \
-			"${API_ENDPOINT}/v2/check" |
-			FILE="${FILE}" tmpl /langtool.tmpl
+			--data "${DATA_FOR_FILE}" \
+			"${INPUT_API_ENDPOINT}/v2/check")
+
+		# Pass the file path to tmpl
+		PARSED_RESPONSE=$(echo "${RESPONSE_JSON}" | FILE="${FILE}" tmpl /langtool.tmpl)
+
+		echo "${PARSED_RESPONSE}"
 	done
 }
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
-run_langtool |
-	reviewdog -efm="%A%f:%l:%c: %m" -efm="%C %m" -name="LanguageTool" -reporter="${INPUT_REPORTER:-github-pr-check}" -level="${INPUT_LEVEL}"
+LANGTOOL_RESPONSE=$(run_langtool)
+
+echo "${LANGTOOL_RESPONSE}" | reviewdog -efm="%A%f:%l:%c: %m" \
+	-efm="%C %m" \
+	-name="LanguageTool" \
+	-reporter="${INPUT_REPORTER:-github-pr-review}" \
+	-level="${INPUT_LEVEL}" \
+	-filter-mode="${INPUT_FILTER_MODE}"

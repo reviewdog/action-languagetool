@@ -38,8 +38,9 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
+          filter_files: all
           level: error
           patterns: "**.md"
-          custom_api_endpoint: ${{ secrets.LANGTOOL_HTTP_URI }}
+          api_endpoint: ${{ secrets.LANGTOOL_HTTP_URI }}
           username: ${{ secrets.LANGTOOL_USERNAME }}
           api_key: ${{ secrets.LANGTOOL_API_KEY }}

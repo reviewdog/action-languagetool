@@ -1,6 +1,6 @@
 name: "Run LanguageTool with reviewdog"
 description: "🐶 Run LanguageTool with reviewdog on pull requests to improve code review experience."
-author: "haya14busa"
+author: "FluxNinja"
 inputs:
   github_token:
     description: "GITHUB_TOKEN"
@@ -12,10 +12,16 @@ inputs:
   reporter:
     description: "Reporter of reviewdog command [github-pr-check,github-pr-review]."
     default: "github-pr-review"
+  filter_mode:
+    description: "filter mode for reviewdog"
+    default: "file"
   ### Flags for target file ###
   patterns:
     description: "Space separated target file glob patterns. https://github.com/haya14busa/ghglob"
     default: "**/*.md **/*.txt"
+  filter_files:
+    description: "changed or all"
+    default: "changed"
   ### Flags for LanguageTool ###
   # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
   language:
@@ -34,26 +40,19 @@ inputs:
   enabled_only:
     description: "enabledOnly of LanguageTool"
     default: "false"
-  custom_api_endpoint:
-    description: "Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api"
-    default: ""
+  api_endpoint:
+    description: "API endpoint of LanguageTool server. e.g. https://languagetool.org/api"
+    default: "https://languagetool.org/api"
   username:
     description: "Username"
     default: ""
   api_key:
     description: "API Key"
     default: ""
-  filter_mode:
-    description: "changed or all"
-    default: "changed"
-  spelling_file:
-    description: "spelling file in the repository"
-    default: ""
 runs:
   using: "docker"
   image: "Dockerfile"
 
-# Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
   icon: "type"
-  color: "blue"
+  color: "orange"
