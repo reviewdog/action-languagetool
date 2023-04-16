@@ -79,43 +79,13 @@ set +o noglob
 run_langtool() {
 	for FILE in ${FILES}; do
 		echo "Checking ${FILE}..." >&2
-		TEXT_JSON=$(markup_to_json "$(cat "${FILE}")")
-		DATA="data=${TEXT_JSON}"
 		curl --silent \
 			--request POST \
 			--data "${DATA}" \
+			--data-urlencode "text=$(cat "${FILE}")" \
 			"${API_ENDPOINT}/v2/check" |
 			FILE="${FILE}" tmpl /langtool.tmpl
 	done
-}
-
-markup_to_json() {
-	local text_with_markup="$1"
-	local json_text
-	local markup_regex='<[^>]+>'
-
-	json_text='{"annotation":['
-
-	while [[ ${text_with_markup} =~ ${markup_regex} ]]; do
-		local markup="${BASH_REMATCH[0]}"
-		local text_part="${text_with_markup%%"${markup}"*}"
-		text_with_markup="${text_with_markup#*"${markup}"}"
-
-		json_text+='{"text": "'"${text_part//\"/\\\"}"'"},'
-		json_text+='{"markup": "'"${markup//\"/\\\"}"'"}'
-
-		if [[ -n ${text_with_markup} ]]; then
-			json_text+=','
-		fi
-	done
-
-	if [[ -n ${text_with_markup} ]]; then
-		json_text+='{"text": "'"${text_with_markup//\"/\\\"}"'"}'
-	fi
-
-	json_text+=']}'
-
-	echo "${json_text}"
 }
 
 export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
