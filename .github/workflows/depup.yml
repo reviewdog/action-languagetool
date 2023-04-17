@@ -18,7 +18,7 @@ jobs:
           repo: reviewdog/reviewdog
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update reviewdog to ${{ steps.depup.outputs.latest }}"
@@ -44,7 +44,7 @@ jobs:
           repo: haya14busa/tmpl
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update tmpl to ${{ steps.depup.outputs.latest }}"
@@ -70,7 +70,7 @@ jobs:
           repo: haya14busa/offset
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update offset to ${{ steps.depup.outputs.latest }}"
@@ -96,7 +96,7 @@ jobs:
           repo: haya14busa/ghglob
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update ghglob to ${{ steps.depup.outputs.latest }}"
