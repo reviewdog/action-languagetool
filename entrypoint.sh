@@ -45,7 +45,7 @@ run_langtool() {
     curl --silent \
       --request POST \
       --data "${DATA}" \
-      --data-urlencode "text=$(cat "${FILE}")" \
+      --data-urlencode "text=$(git diff HEAD origin/HEAD -- "${FILE}" -U0 | egrep "^(\+|-) " | grep +)" \
       "${API_ENDPOINT}/v2/check" | \
       FILE="${FILE}" tmpl /langtool.tmpl
   done
