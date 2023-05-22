@@ -39,6 +39,9 @@ set -o noglob
 FILES="$(git ls-files | ghglob ${INPUT_PATTERNS})"
 set +o noglob
 
+# To manage whitespaces in filepath
+IFS=$(echo -en "\n\b")
+
 run_langtool() {
   for FILE in ${FILES}; do
     echo "Checking ${FILE}..." >&2
