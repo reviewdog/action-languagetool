@@ -1,7 +1,7 @@
 FROM erikvl87/languagetool:6.1
 # https://github.com/Erikvl87/docker-languagetool
 
-ENV REVIEWDOG_VERSION=v0.14.1
+ENV REVIEWDOG_VERSION=v0.14.2
 ENV TMPL_VERSION=v1.2.0
 ENV OFFSET_VERSION=v1.0.6
 ENV LANGUAGETOOL_VERSION=5.2
