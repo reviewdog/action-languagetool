@@ -37,6 +37,9 @@ inputs:
   custom_api_endpoint:
     description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
     default: ''
+  wait_server_startup_duration:
+    description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
+    default: '3'
 runs:
   using: 'docker'
   image: 'Dockerfile'
