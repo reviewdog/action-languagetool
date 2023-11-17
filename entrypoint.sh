@@ -5,7 +5,8 @@ API_ENDPOINT="${INPUT_CUSTOM_API_ENDPOINT}"
 if [ -z "${INPUT_CUSTOM_API_ENDPOINT}" ]; then
   API_ENDPOINT=http://localhost:8010
   java -cp "/LanguageTool/languagetool-server.jar" org.languagetool.server.HTTPServer --port 8010 &
-  sleep 3 # Wait the server statup.
+  echo "Wait the server startup for ${INPUT_WAIT_SERVER_STARTUP_DURATION}s"
+  sleep "${INPUT_WAIT_SERVER_STARTUP_DURATION}" # Wait the server startup.
 fi
 
 echo "API ENDPOINT: ${API_ENDPOINT}" >&2
