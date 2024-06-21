@@ -22,14 +22,14 @@ inputs:
     description: 'language of LanguageTool'
     default: 'en-US'
   enabled_rules:
-    description: 'comma separeted enabledRules of LanguageTool'
+    description: 'comma separated enabledRules of LanguageTool'
   disabled_rules:
-    description: 'comma separeted disabledRules of LanguageTool'
+    description: 'comma separated disabledRules of LanguageTool'
     default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END,METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE'
   enabled_categories:
-    description: 'comma separeted enabledCategories of LanguageTool'
+    description: 'comma separated enabledCategories of LanguageTool'
   disabled_categories:
-    description: 'comma separeted disabledCategories of LanguageTool'
+    description: 'comma separated disabledCategories of LanguageTool'
     default: 'TYPOS,TYPOGRAPHY'
   enabled_only:
     description: 'enabledOnly of LanguageTool'
