@@ -12,48 +12,27 @@
 
 This action runs [LanguageTool](https://github.com/languagetool-org/languagetool) check with [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve code review experience.
 
-## Input
+## Inputs
 
-```yaml
-inputs:
-  github_token:
-    description: 'GITHUB_TOKEN'
-    default: '${{ github.token }}'
-  ### Flags for reviewdog ###
-  level:
-    description: 'Report level for reviewdog [info,warning,error]'
-    default: 'error'
-  reporter:
-    description: 'Reporter of reviewdog command [github-pr-check,github-pr-review].'
-    default: 'github-pr-check'
-  ### Flags for target file ###
-  patterns:
-    description: 'Space separated target file glob patterns. https://github.com/haya14busa/ghglob'
-    default: '**/*.md **/*.txt'
-  ### Flags for LanguageTool ###
-  # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
-  language:
-    description: 'language of LanguageTool'
-    default: 'en-US'
-  enabled_rules:
-    description: 'comma separeted enabledRules of LanguageTool'
-  disabled_rules:
-    description: 'comma separeted disabledRules of LanguageTool'
-    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END,METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE'
-  enabled_categories:
-    description: 'comma separeted enabledCategories of LanguageTool'
-  disabled_categories:
-    description: 'comma separeted disabledCategories of LanguageTool'
-    default: 'TYPOS'
-  enabled_only:
-    description: 'enabledOnly of LanguageTool'
-    default: 'false'
-  custom_api_endpoint:
-    description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
-    default: ''
-```
+| GitHub Action       | Bitbucket pipe      | Default                                                                                                                                                                                                                                                                                                        | Description                                                                     |
+|---------------------|---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| github_token        | N/A                 | `${{ github.token }}`                                                                                                                                                                                                                                                                                          | GITHUB_TOKEN                                                                    |
+| level               | LEVEL               | `error`                                                                                                                                                                                                                                                                                                        | Report level for reviewdog [info,warning,error]                                 |
+| reporter            | REPORTER            | `github-pr-check`/`bitbucket-code-report`                                                                                                                                                                                                                                                                      | Reporter of reviewdog command [github-pr-check,github-pr-review]                |
+| extra_args          | EXTRA_ARGS          |                                                                                                                                                                                                                                                                                                                | Add additional reviewdog cli args                                               |
+| patterns            | PATTERNS            | `**/*.md **/*.txt'`                                                                                                                                                                                                                                                                                            | Space separated target file glob patterns. https://github.com/haya14busa/ghglob |
+| language            | LANGUAGE            | `en-US`                                                                                                                                                                                                                                                                                                        | `language` of LanguageTool                                                      |
+| enabled_rules       | ENABLED_RULES       |                                                                                                                                                                                                                                                                                                                | Comma separated `enabledRules` of LanguageTool                                  |
+| disabled_rules      | DISABLED_RULES      | WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE, UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE, UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY, EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END, METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE | Comma separated `disabledRules` of LanguageTool                                 |
+| enabled_categories  | ENABLED_CATEGORIES  |                                                                                                                                                                                                                                                                                                                | Comma separated `enabledCategories` of LanguageTool                             |
+| disabled_categories | DISABLED_CATEGORIES | TYPOS,TYPOGRAPHY                                                                                                                                                                                                                                                                                               | Comma separated `disabledCategories` of LanguageTool                            |
+| enabled_only        | ENABLED_ONLY        | `false`                                                                                                                                                                                                                                                                                                        | `enabledOnly` of LanguageTool                                                   |
+| custom_api_endpoint | CUSTOM_API_ENDPOINT |                                                                                                                                                                                                                                                                                                                | Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api    |
 
-## Usage
+See [Language Tool API Docs](https://languagetool.org/http-api/swagger-ui/#!/default/post_check) for more detailed
+explanation for some of the parameters
+
+## GitHub Action example
 
 ```yaml
 name: reviewdog
@@ -71,6 +50,19 @@ jobs:
           reporter: github-pr-review
           # Change reporter level if you need.
           level: info
+```
+
+## Bitbucket pipe example
+
+```yaml
+pipelines:
+  default:
+    - step:
+        script:
+          - pipe: docker://reviewdog/action-languagetool:1.5.0
+            variables:
+              LEVEL: info
+              PATTERNS: "**/*.txt"
 ```
 
 ## Development
