@@ -49,7 +49,7 @@ run_langtool() {
     curl --silent \
       --request POST \
       --data "${DATA}" \
-      --data-urlencode "text=$(cat "${FILE}")" \
+      --data-urlencode "text@${FILE}" \
       "${API_ENDPOINT}/v2/check" | \
       FILE="${FILE}" tmpl /langtool.tmpl
   done
