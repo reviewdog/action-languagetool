@@ -46,6 +46,11 @@ IFS=$(echo -en "\n\b")
 run_langtool() {
   for FILE in ${FILES}; do
     echo "Checking ${FILE}..." >&2
+    # Skip empty files
+    if [ ! -s "${FILE}" ]; then
+      echo "Skipping empty file: ${FILE}" >&2
+      continue
+    fi
     curl --silent \
       --request POST \
       --data "${DATA}" \
