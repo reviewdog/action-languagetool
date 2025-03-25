@@ -1,0 +1,35 @@
+name: Reviewdog LanguageTool
+image: reviewdog/action-languagetool:1.5.0
+category: Code quality
+description: This action runs LanguageTool check with reviewdog on commit to improve code review experience.
+variables:
+  ### Flags for reviewdog ###
+  - Name: LEVEL
+    default: 'error'
+  ### Flags for target file ###
+  - Name: PATTERNS
+    default: '**/*.md **/*.txt'
+  ### Flags for LanguageTool ###
+  # Ref: https://languagetool.org/http-api/swagger-ui/#!/default/post_check
+  - Name: LANGUAGE
+    default: 'en-US'
+  - Name: ENABLED_RULES
+  - Name: DISABLED_RULES
+    default: 'WHITESPACE_RULE,EN_QUOTES,DASH_RULE,WORD_CONTAINS_UNDERSCORE,UPPERCASE_SENTENCE_START,ARROWS,COMMA_PARENTHESIS_WHITESPACE,UNLIKELY_OPENING_PUNCTUATION,SENTENCE_WHITESPACE,CURRENCY,EN_UNPAIRED_BRACKETS,PHRASE_REPETITION,PUNCTUATION_PARAGRAPH_END,METRIC_UNITS_EN_US,ENGLISH_WORD_REPEAT_BEGINNING_RULE'
+  - Name: ENABLED_CATEGORIES
+  - Name: DISABLED_CATEGORIES
+    default: 'TYPOS,TYPOGRAPHY'
+  - Name: ENABLED_ONLY
+    default: 'false'
+  - Name: CUSTOM_API_ENDPOINT
+repository: https://github.com/reviewdog/action-languagetool
+maintainer:
+  name: Trane9991
+  email: trane9991@gmail.com
+tags:
+  - reviewdog
+  - report
+  - languagetool
+  - lint
+  - markdown
+  - text
