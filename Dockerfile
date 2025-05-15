@@ -1,4 +1,4 @@
-FROM erikvl87/languagetool:6.5
+FROM erikvl87/languagetool:6.6
 # https://github.com/Erikvl87/docker-languagetool
 
 ENV REVIEWDOG_VERSION=v0.20.3
