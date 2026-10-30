@@ -19,7 +19,7 @@ workflows:
         - 'haya14busa/action-cond@v1.2.1'
         - 'reviewdog/action-hadolint@v1.50.2'
         - 'reviewdog/action-misspell@v1.26.3'
-        - 'reviewdog/action-shellcheck@v1.29.3'
+        - 'reviewdog/action-shellcheck@v1.34.1'
     '.github/workflows/test.yml':
         - 'actions/checkout@v4.2.2'
 dependencies:
@@ -63,15 +63,15 @@ dependencies:
         commit: 'sha1-9daa94af4357dddb6fd3775de806bc0a8e98d3e4'
         owner_id: 48765237
         repo_id: 208637003
-    'reviewdog/action-setup@e04ffabe3898a0af8d0fb1af00c188831c4b5893':
-        ref: 'v1.3.2'
-        commit: 'sha1-e04ffabe3898a0af8d0fb1af00c188831c4b5893'
+    'reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f':
+        ref: 'v1.5.0'
+        commit: 'sha1-d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f'
         owner_id: 48765237
         repo_id: 286005511
-    'reviewdog/action-shellcheck@v1.29.3':
-        ref: 'v1.29.3'
-        commit: 'sha1-57079a832290a049f49cee90984b072c870fb7d4'
+    'reviewdog/action-shellcheck@v1.34.1':
+        ref: 'v1.34.1'
+        commit: 'sha1-d0b8d5fd7fad6afdb6e1b6ce1778892be4d1f427'
         owner_id: 48765237
         repo_id: 211116201
         uses:
-            - 'reviewdog/action-setup@e04ffabe3898a0af8d0fb1af00c188831c4b5893'
+            - 'reviewdog/action-setup@d8a7baabd7f3e8544ee4dbde3ee41d0011c3a93f'
