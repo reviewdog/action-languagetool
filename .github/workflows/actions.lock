@@ -5,7 +5,7 @@ version: 'v0.0.3'
 workflows:
     '.github/workflows/depup.yml':
         - 'actions/checkout@v4.2.2'
-        - 'peter-evans/create-pull-request@v7.0.8'
+        - 'peter-evans/create-pull-request@v7.0.11'
         - 'reviewdog/action-depup@v1.6.4'
     '.github/workflows/dockerimage.yml':
         - 'actions/checkout@v4.2.2'
@@ -43,9 +43,9 @@ dependencies:
         commit: 'sha1-fb48464b2438ae82cc78237be61afb4f461265a1'
         owner_id: 3797062
         repo_id: 225328382
-    'peter-evans/create-pull-request@v7.0.8':
-        ref: 'v7.0.8'
-        commit: 'sha1-271a8d0340265f705b14b6d32b9829c1cb33d45e'
+    'peter-evans/create-pull-request@v7.0.11':
+        ref: 'v7.0.11'
+        commit: 'sha1-22a9089034f40e5a961c8808d113e2c98fb63676'
         owner_id: 18365890
         repo_id: 197176365
     'reviewdog/action-depup@v1.6.4':
