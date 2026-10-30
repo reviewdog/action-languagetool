@@ -9,8 +9,8 @@ jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
+      - uses: actions/checkout@v4.2.2
+      - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
           file: Dockerfile
@@ -18,7 +18,7 @@ jobs:
           repo: reviewdog/reviewdog
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        uses: peter-evans/create-pull-request@v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update reviewdog to ${{ steps.depup.outputs.latest }}"
@@ -35,8 +35,8 @@ jobs:
   tmpl:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
+      - uses: actions/checkout@v4.2.2
+      - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
           file: Dockerfile
@@ -44,7 +44,7 @@ jobs:
           repo: haya14busa/tmpl
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        uses: peter-evans/create-pull-request@v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update tmpl to ${{ steps.depup.outputs.latest }}"
@@ -61,8 +61,8 @@ jobs:
   offset:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
+      - uses: actions/checkout@v4.2.2
+      - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
           file: Dockerfile
@@ -70,7 +70,7 @@ jobs:
           repo: haya14busa/offset
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        uses: peter-evans/create-pull-request@v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update offset to ${{ steps.depup.outputs.latest }}"
@@ -87,8 +87,8 @@ jobs:
   ghglob:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-      - uses: haya14busa/action-depup@94a1aaf4e4923064019214b48a43276218af7ad5 # v1.6.4
+      - uses: actions/checkout@v4.2.2
+      - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
           file: Dockerfile
@@ -96,7 +96,7 @@ jobs:
           repo: haya14busa/ghglob
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
+        uses: peter-evans/create-pull-request@v7.0.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           title: "chore(deps): update ghglob to ${{ steps.depup.outputs.latest }}"
