@@ -9,7 +9,7 @@ jobs:
   reviewdog:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -35,7 +35,7 @@ jobs:
   tmpl:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -61,7 +61,7 @@ jobs:
   offset:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -87,7 +87,7 @@ jobs:
   ghglob:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
