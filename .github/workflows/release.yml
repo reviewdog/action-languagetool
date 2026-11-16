@@ -9,8 +9,14 @@ on:
     types:
       - labeled
 
+permissions:
+  contents: read
+
 jobs:
   release:
+    permissions:
+      contents: write # bumpr and update-semver push the tags, gh creates the release
+      pull-requests: write # bumpr reads the merged pull request and comments on it
     if: github.event.action != 'labeled'
     runs-on: ubuntu-latest
     steps:
@@ -47,6 +53,9 @@ jobs:
           gh release create "${TAG_NAME}" -t "Release ${TAG_NAME/refs\/tags\//}" --notes "${BODY}"
 
   release-check:
+    permissions:
+      contents: read
+      pull-requests: write # bumpr comments the next version on the pull request
     if: github.event.action == 'labeled'
     runs-on: ubuntu-latest
     steps:

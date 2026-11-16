@@ -4,8 +4,16 @@ on:
     branches:
       - master
   pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   shellcheck:
+    permissions:
+      checks: write # the github-check reporter creates a check run on pushes
+      contents: read
+      pull-requests: write # the github-pr-review reporter posts review comments
     name: runner / shellcheck
     runs-on: ubuntu-latest
     steps:
@@ -23,6 +31,10 @@ jobs:
           level: warning
 
   hadolint:
+    permissions:
+      checks: write # the github-check reporter creates a check run on pushes
+      contents: read
+      pull-requests: write # the github-pr-review reporter posts review comments
     name: runner / hadolint
     runs-on: ubuntu-latest
     steps:
@@ -40,6 +52,10 @@ jobs:
           level: warning
 
   misspell:
+    permissions:
+      checks: write # the github-check reporter creates a check run
+      contents: read
+      pull-requests: read # reviewdog reads the pull request diff
     name: runner / misspell
     runs-on: ubuntu-latest
     steps:

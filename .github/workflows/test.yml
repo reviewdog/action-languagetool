@@ -4,8 +4,16 @@ on:
     branches:
       - master
   pull_request:
+
+permissions:
+  contents: read
+
 jobs:
   test-check:
+    permissions:
+      checks: write # the github-check reporter creates a check run
+      contents: read
+      pull-requests: read # reviewdog reads the pull request diff
     name: runner / languagetool (github-check)
     runs-on: ubuntu-latest
     steps:
@@ -17,6 +25,10 @@ jobs:
           level: info
 
   test-pr-check:
+    permissions:
+      checks: write # the github-pr-check reporter creates a check run
+      contents: read
+      pull-requests: read # reviewdog reads the pull request diff
     if: github.event_name == 'pull_request'
     name: runner / languagetool (github-pr-check)
     runs-on: ubuntu-latest
@@ -29,6 +41,9 @@ jobs:
           level: info
 
   test-pr-review:
+    permissions:
+      contents: read
+      pull-requests: write # the github-pr-review reporter posts review comments
     if: github.event_name == 'pull_request'
     name: runner / languagetool (github-pr-review)
     runs-on: ubuntu-latest
