@@ -49,7 +49,7 @@ inputs:
     description: 'enabledOnly of LanguageTool'
     default: 'false'
   custom_api_endpoint:
-    description: 'Custom API endpoint of LanguageTool server. e.g. https://languagetool.org/api'
+    description: 'Custom API endpoint of LanguageTool server. e.g. https://api.languagetool.org'
     default: ''
 ```
 
