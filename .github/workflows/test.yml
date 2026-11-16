@@ -40,4 +40,4 @@ jobs:
           reporter: github-pr-review
           level: info
           patterns: "**.md"
-          custom_api_endpoint: https://languagetool.org/api
+          custom_api_endpoint: https://api.languagetool.org
