@@ -18,6 +18,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: haya14busa/action-cond@v1.2.1
         id: reporter
         with:
@@ -39,6 +41,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: haya14busa/action-cond@v1.2.1
         id: reporter
         with:
@@ -60,6 +64,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: reviewdog/action-misspell@v1.30.4
         with:
           github_token: ${{ secrets.github_token }}
