@@ -17,7 +17,7 @@ jobs:
     name: runner / languagetool (github-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
         with:
           persist-credentials: false
       - uses: ./
@@ -35,7 +35,7 @@ jobs:
     name: runner / languagetool (github-pr-check)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
         with:
           persist-credentials: false
       - uses: ./
@@ -52,7 +52,7 @@ jobs:
     name: runner / languagetool (github-pr-review)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v4.4.0
         with:
           persist-credentials: false
       - uses: ./
