@@ -5,11 +5,19 @@ on:
   repository_dispatch:
     types: [depup]
 
+permissions:
+  contents: read
+
 jobs:
   reviewdog:
+    permissions:
+      contents: write # create-pull-request pushes the depup/reviewdog branch
+      pull-requests: write # and opens the pull request with its label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -33,9 +41,14 @@ jobs:
           labels: "bump:minor"
 
   tmpl:
+    permissions:
+      contents: write # create-pull-request pushes the depup/tmpl branch
+      pull-requests: write # and opens the pull request with its label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -59,9 +72,14 @@ jobs:
           labels: "bump:patch"
 
   offset:
+    permissions:
+      contents: write # create-pull-request pushes the depup/offset branch
+      pull-requests: write # and opens the pull request with its label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
@@ -85,9 +103,14 @@ jobs:
           labels: "bump:patch"
 
   ghglob:
+    permissions:
+      contents: write # create-pull-request pushes the depup/ghglob branch
+      pull-requests: write # and opens the pull request with its label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - uses: reviewdog/action-depup@v1.6.4
         id: depup
         with:
